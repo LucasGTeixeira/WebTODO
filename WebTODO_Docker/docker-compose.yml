@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  webTODOdb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    container_name: webtodo
+    environment:
+      MYSQL_ROOT_PASSWORD: letmein
+      MYSQL_DATABASE: webtodo
+    ports:
+      - 3306:3306
