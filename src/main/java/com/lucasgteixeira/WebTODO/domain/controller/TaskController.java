@@ -26,27 +26,21 @@ public class TaskController {
     public String saveTask(Task task, RedirectAttributes attr){
         taskService.addNewTask(task);
         attr.addFlashAttribute("success", "task added");
-        return "redirect:/add";
+        return "redirect:/tasks/add";
     }
 
     @GetMapping("/update/{id}")
-    public String preUpdateTask(@PathVariable("id") Integer id, ModelMap model){
+    public String preUpdate(@PathVariable("id") Integer id, ModelMap model){
         model.addAttribute("task", taskService.getTaskById(id));
         return "/addTask";
     }
 
     @PostMapping("/update")
-    public String updateTask(Task task, RedirectAttributes attr){
+    public String update(Task task, RedirectAttributes attr){
         taskService.updateTask(task);
         attr.addFlashAttribute("success", "task updated");
-        return "redirect:/add";
+        return "redirect:/tasks/add";
     }
-
-    @GetMapping("/listAll")
-   public String listAllTasks(ModelMap modelMap){
-        modelMap.addAttribute("tasks", taskService.getAllTasks());
-        return "/allTasks";
-   }
 
    @GetMapping("/listTodo")
    public String listTodoTasks(ModelMap modelMap){

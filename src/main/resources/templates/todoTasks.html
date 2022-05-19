@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -18,7 +20,7 @@
 </head>
 <body>
 <!-- Background Video-->
-<video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="assets/mp4/bg.mp4" type="video/mp4" /></video>
+<video class="bg-video" playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop"><source src="/assets/mp4/bg.mp4" type="video/mp4" /></video>
 <!-- Masthead-->
 <div class="masthead">
     <div class="masthead-content text-white">
@@ -32,14 +34,21 @@
                     <th scope="col">BEGINNING</th>
                     <th scope="col">ENDING</th>
                     <th scope="col">STATUS</th>
+                    <th scope="col">UPDATE</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr th:each="t : ${tasks}">
+                    <th th:text="${t.id}"></th>
+                    <td th:text="${t.name}"></td>
+                    <td th:text="${t.dataInicio}"></td>
+                    <td th:text="${t.dataTermino}"></td>
+                    <td th:text="${t.taskStatus}"></td>
+                    <td colspan="2">
+                        <a class="btn btn-info btn-sm" th:href="@{/tasks/update/{id} (id=${t.id})}" role="button">
+                            <span class="oi oi-brush" title="Update" aria-hidden="true"></span>
+                        </a>
+                    </td>
                 </tbody>
             </table>
         </div>
@@ -50,7 +59,7 @@
 <div class="social-icons">
     <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-3 mt-lg-0">
         <a class="btn btn-dark m-3" href="/tasks/add"><i class="fa-solid fa-circle-plus"></i></a>
-        <a class="btn btn-dark m-3" href="/"><i class="fa-solid fa-house"></i></i></a>
+        <a class="btn btn-dark m-3" href="/"><i class="fa-solid fa-house"></i></a>
         <a class="btn btn-dark m-3" href="/tasks/listDoing"><i class="fa-solid fa-circle-play"></i></a>
         <a class="btn btn-dark m-3" href="/tasks/listDone"><i class="fa-solid fa-circle-check"></i></a>
     </div>

@@ -26,8 +26,8 @@
     <div class="masthead-content text-white">
         <div class="container-fluid px-4 px-lg-0">
             <h1 class="fst-italic lh-1 mb-4">Add New Task</h1>
-                <form th:action="${task.id == null} ? @{/tasks/add} : @{/tasks/update}"
-                    th:object="${task}" method="POST">
+                <form th:action="${task.id == null} ? @{/tasks/save} : @{/tasks/update}"
+                    th:object="${task}" method="post">
                     <div class="form-group">
                         <label for="taskName">Task Name</label>
                         <input type="text" class="form-control" id="taskName" th:field="*{name}">
@@ -49,7 +49,6 @@
                         </select>
                     </div>
                     <input type="hidden" id="id" th:field="*{id}"/>
-
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
         </div>
@@ -59,7 +58,7 @@
 <!-- For more icon options, visit https://fontawesome.com/icons?d=gallery&p=2&s=brands-->
 <div class="social-icons">
     <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-3 mt-lg-0">
-        <a class="btn btn-dark m-3" href="/"><i class="fa-solid fa-house"></i></i></a>
+        <a class="btn btn-dark m-3" href="/"><i class="fa-solid fa-house"></i></a>
         <a class="btn btn-dark m-3" href="/tasks/listTodo"><i class="fa-solid fa-calendar-days"></i></a>
         <a class="btn btn-dark m-3" href="/tasks/listDoing"><i class="fa-solid fa-circle-play"></i></a>
         <a class="btn btn-dark m-3" href="/tasks/listDone"><i class="fa-solid fa-circle-check"></i></a>

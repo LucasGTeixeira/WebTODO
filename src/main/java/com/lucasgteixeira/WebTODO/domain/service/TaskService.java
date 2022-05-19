@@ -27,8 +27,8 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Task> getTaskById(Integer id){
-        return taskRepository.findById(id);
+    public Task getTaskById(Integer id){
+        return taskRepository.findTaskById(id);
     }
 
     @Transactional(readOnly = true)
@@ -53,6 +53,14 @@ public class TaskService {
 
     @Transactional
     public void updateTask(Task task){
+        taskRepository.save(task);
+    }
+
+    public void updateTaskStatus(Task task){
+        if(task.getTaskStatus() == TaskStatus.TODO)
+            task.setTaskStatus(TaskStatus.DOING);
+        else if(task.getTaskStatus() == TaskStatus.DOING)
+            task.setTaskStatus(TaskStatus.DONE);
         taskRepository.save(task);
     }
 
