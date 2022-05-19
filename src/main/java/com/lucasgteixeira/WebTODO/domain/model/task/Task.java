@@ -9,14 +9,24 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
     private LocalDate dataInicio;
     @Column(nullable = false)
     private LocalDate dataTermino;
     @Column(nullable = false)
     private TaskStatus taskStatus;
 
-    public Task(Integer id, LocalDate dataInicio, LocalDate dataTermino, TaskStatus taskStatus) {
+    public Task(Integer id, String name, LocalDate dataInicio, LocalDate dataTermino, TaskStatus taskStatus) {
         this.id = id;
+        this.name = name;
+        this.dataInicio = dataInicio;
+        this.dataTermino = dataTermino;
+        this.taskStatus = taskStatus;
+    }
+
+    public Task(String name, LocalDate dataInicio, LocalDate dataTermino, TaskStatus taskStatus) {
+        this.name = name;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
         this.taskStatus = taskStatus;
@@ -24,6 +34,22 @@ public class Task {
 
     public Task() {
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getDataInicio() {
